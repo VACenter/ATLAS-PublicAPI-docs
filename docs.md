@@ -157,8 +157,7 @@ Returns a single PIREP, including aircraft (with livery), multipliers, and route
 | `id`      | `number` | Yes      | The PIREP's ID  |
 
 **Error responses:**
-- `400` – `No ID found` (if `id` query param is missing)
-- `400` – `No PIREP found` (if no PIREP matches the given ID)
+- `400` – `Data missing` (if a body field is missing; the specific field will be specified in the response)
 
 ---
 
