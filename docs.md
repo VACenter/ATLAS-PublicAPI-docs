@@ -162,6 +162,33 @@ Returns a single PIREP, including aircraft (with livery), multipliers, and route
 
 ---
 
+#### `POST /api/external/pirep/`
+
+Returns a single PIREP, including aircraft (with livery), multipliers, and route.
+
+**BODY fields:**
+
+| Parameter      | Type     | Required | Description                                                              |
+|----------------|----------|----------|--------------------------------------------------------------------------|
+| `membershipID` | `number` | Yes      | The Pilot's ID (found through API or on the VA Dashboard)                |
+| `flightNum`    | `string` | Yes      | The flight number                                                        |
+| `depICAO`      | `string` | Yes      | The departure airport ICAO                                               |
+| `arrICAO`      | `string` | Yes      | The arrival airport ICAO                                                 |
+| `aircraft`     | `number` | Yes      | The aircraft's ID (found through API)                                    |
+| `estFThrs`     | `number` | Yes      | Flight time hours                                                        |
+| `estFTmins`    | `number` | Yes      | Flight time minutes                                                      |
+| `fuel`         | `number` | Yes      | The fuel burned)                                                         |
+| `date`         | `Date`   | Yes      | The date the flight was flown (Format: **YEAR-MM-DD**T**HR:MN:SS.MS**Z ) |
+| `type`         | `string` | Yes      | PASSENGER/CARGO                                                          |
+| `load`         | `number` | Yes      | The load of PAX or CARGO in Kg                                           |
+
+
+**Error responses:**
+- `400` – `No ID found` (if `id` query param is missing)
+- `400` – `No PIREP found` (if no PIREP matches the given ID)
+
+---
+
 ### Operations
 
 #### `GET /api/external/operations/all`
