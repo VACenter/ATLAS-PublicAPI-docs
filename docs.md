@@ -260,6 +260,67 @@ Returns a single route, including associated aircraft (with livery).
 
 ---
 
+### Invites
+
+#### `GET /api/external/invites/all`
+
+Returns all invite records for the VA.
+
+**Response `data`:** Array of invite objects.
+
+---
+
+#### `GET /api/external/invites/specific`
+
+Returns a single invite record.
+
+**Query Parameters:**
+
+| Parameter | Type     | Required | Description     |
+|-----------|----------|----------|-----------------|
+| `id`      | `number` | Yes      | The invite ID   |
+
+**Error responses:**
+- `400` – `No ID found` (if `id` query param is missing)
+- `400` – `No Invite found` (if no invite matches the given ID)
+
+---
+
+#### `POST /api/external/invites/create`
+
+Creates a new invite.
+
+**BODY fields:**
+
+| Parameter | Type     | Required | Description                                  |
+|-----------|----------|----------|----------------------------------------------|
+| `email`   | `string` | Yes      | Email address to send the invite to          |
+| `rankID`  | `number` | No       | Optional starting rank ID for invited pilot  |
+| `note`    | `string` | No       | Optional internal note for invite tracking   |
+
+**Response `data`:** Newly created invite object.
+
+**Error responses:**
+- `400` – `Data missing` (if required body fields are missing)
+- `400` – `Invite already exists` (if an active invite already exists for the email)
+
+---
+
+#### `GET /api/external/invites/observe`
+
+Observes invite activity/status updates for the VA.
+
+**Query Parameters (optional):**
+
+| Parameter | Type     | Required | Description                                           |
+|-----------|----------|----------|-------------------------------------------------------|
+| `status`  | `string` | No       | Filter by invite status (e.g. `PENDING`, `ACCEPTED`) |
+| `limit`   | `number` | No       | Maximum number of records to return                   |
+
+**Response `data`:** Array of invite activity/status entries.
+
+---
+
 ### Ranks
 
 #### `GET /api/external/ranks/pilots`
@@ -323,3 +384,5 @@ Returns the total flight hours across all pilots in the VA (sum of all pilot `fl
 | `400`  | `No PIREP found`              | No PIREP found with the given ID              |
 | `400`  | `No Operation found`          | No operation found with the given ID          |
 | `400`  | `No Route found`              | No route found with the given ID              |
+| `400`  | `No Invite found`             | No invite found with the given ID             |
+| `400`  | `Invite already exists`       | Active invite already exists for this email   |
