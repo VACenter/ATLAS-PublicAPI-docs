@@ -262,7 +262,7 @@ Returns a single route, including associated aircraft (with livery).
 
 ### Invites
 
-#### `GET /api/external/invites/all`
+#### `GET /api/external/invite/`
 
 Returns all invite records for the VA.
 
@@ -270,54 +270,21 @@ Returns all invite records for the VA.
 
 ---
 
-#### `GET /api/external/invites/specific`
+#### `POST /api/external/invite/`
 
-Returns a single invite record.
-
-**Query Parameters:**
-
-| Parameter | Type     | Required | Description     |
-|-----------|----------|----------|-----------------|
-| `id`      | `number` | Yes      | The invite ID   |
-
-**Error responses:**
-- `400` – `No ID found` (if `id` query param is missing)
-- `400` – `No Invite found` (if no invite matches the given ID)
-
----
-
-#### `POST /api/external/invites/create`
-
-Creates a new invite.
+Creates a new invite; and returns its object as well as the URL that must be used.
 
 **BODY fields:**
 
-| Parameter | Type     | Required | Description                                  |
-|-----------|----------|----------|----------------------------------------------|
-| `email`   | `string` | Yes      | Email address to send the invite to          |
-| `rankID`  | `number` | No       | Optional starting rank ID for invited pilot  |
-| `note`    | `string` | No       | Optional internal note for invite tracking   |
+| Parameter     | Type      | Required | Description                                                              |
+|---------------|-----------|----------|--------------------------------------------------------------------------|
+| `oneTimeUse`  | `boolean` | No       | Optional value for making the invite usable multiple, or just one time   |
 
 **Response `data`:** Newly created invite object.
 
 **Error responses:**
 - `400` – `Data missing` (if required body fields are missing)
 - `400` – `Invite already exists` (if an active invite already exists for the email)
-
----
-
-#### `GET /api/external/invites/observe`
-
-Observes invite activity/status updates for the VA.
-
-**Query Parameters (optional):**
-
-| Parameter | Type     | Required | Description                                           |
-|-----------|----------|----------|-------------------------------------------------------|
-| `status`  | `string` | No       | Filter by invite status (e.g. `PENDING`, `ACCEPTED`) |
-| `limit`   | `number` | No       | Maximum number of records to return                   |
-
-**Response `data`:** Array of invite activity/status entries.
 
 ---
 
