@@ -310,6 +310,24 @@ Returns all active ATC ranks for the VA.
 
 ---
 
+### Multipliers
+
+#### `GET /api/external/multiplier/`
+
+Returns all the multipliers records for the VA.
+
+**Query parameters:**
+
+| Parameter     | Type      | Required | Description                                                                  |
+|---------------|-----------|----------|------------------------------------------------------------------------------|
+| `pirep`       | `boolean` | No       | Optional inclusion of all the PIREPs that have ever used this multiplier     |
+| `operations`  | `boolean` | No       | Optional inclusion of all the Operations that have ever used this multiplier |
+
+
+**Response `data`:** Array of invite objects.
+
+---
+
 ### Values
 
 The `values` endpoints return a simplified `{ "value": <number> }` response.
