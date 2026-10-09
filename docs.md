@@ -180,6 +180,10 @@ Returns a single PIREP, including aircraft (with livery), multipliers, and route
 | `date`         | `Date`   | Yes      | The date the flight was flown (Format: **YEAR-MM-DD**T**HR:MN:SS.MS**Z ) |
 | `type`         | `string` | Yes      | PASSENGER/CARGO                                                          |
 | `load`         | `number` | Yes      | The load of PAX or CARGO in Kg                                           |
+| `bags`         | `number` | No       | The number of bags carried for PAX                                       |
+| `comments`     | `string` | No       | Any comments provided by pilot for themselves or for staff               |
+| `operator`     | `string` | No       | The operator of the flight                                               |
+| `multi`        | `number` | No       | The ID of the multiplier (found through API)                             |
 
 
 **Error responses:**
